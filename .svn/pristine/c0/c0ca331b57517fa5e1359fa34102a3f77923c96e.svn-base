@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- Lokacija i ime na klasata za mapiranje vo "name", ime na tabelata vo "table" -->
+    <class name="classes.Kod" table="CODE">
+        <!-- kolonata so primaren kluc vo "column", imeto na attributot od klasata vo "name" -->
+        <id column="code_id" name="idKod">
+            <generator class="increment"/>
+        </id>
+        <!-- Kolku stranici ima kodot, vo "column" imeto na soodvetnata kolona vo bazata
+             vo "name" imeto na attributot od klasata a vo "type" vidot na promenlivata -->
+        <property column="numPages" name="brojStraniciKod" type="integer"/>
+        <property column="Title" name="naslovKod" type="string"/>
+        <property column="description" name="opisKod" type="string" length="21800"/>
+        <!-- Mapiranje na vrskata M:1 pomegku Kod i Jazik -->
+        <many-to-one column="lang_id" name="jazikKod" not-null="true"/>
+        <!-- Mapiranje na vrskata M:N pomegju Kod i Predmet vo "table" imeto
+             na rezultantnata tabela -->
+        <set  name="hashsetPredmet" table="COURSE_CODE">
+            <key column="code_id" not-null="true"/>
+            <many-to-many   class="classes.Predmet">
+                <column name="course_id" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

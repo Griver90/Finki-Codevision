@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <!-- File za konfigiracija na HIBERNATE -->
+    <!-- Stabilira koj jazik ke se koristi vo pozadina za DDL, DML na bazata MySQL vo ovoj slucaj -->
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <!-- Loadiranje na driveri za MySQL -->
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <!-- Connection String za povrzuvanje so bazata  -->
+    <property name="hibernate.connection.url">jdbc:mysql://CodeVisionBaza.db.11631695.hostedresource.com:3306/CodeVisionBaza?zeroDateTimeBehavior=convertToNull</property>
+    <!-- Vnesuvanje na default user i password pri konektiranje -->
+    <property name="hibernate.connection.username">CodeVisionBaza</property>
+    <property name="hibernate.connection.password">Finki@Baza1</property>
+    <!-- Opcija za debagiranje poveke, prikazuva SQL sintaksata pri izvrsuvanjeto -->
+    <property name="hibernate.show_sql">true</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <!-- Dodatok na Hibernate za da drzi konekcijata kon bazata za podolg period -->
+    <property name="connection.provider_class">org.hibernate.connection.C3P0ConnectionProvider</property>
+    <property name="hibernate.c3p0.acquire_increment">1</property>
+    <property name="hibernate.c3p0.idle_test_period">60</property>
+    <property name="hibernate.c3p0.min_size">1</property>
+    <property name="hibernate.c3p0.max_size">2</property>
+    <property name="hibernate.c3p0.max_statements">50</property>
+    <property name="hibernate.c3p0.timeout">0</property>
+    <property name="hibernate.c3p0.acquireRetryAttempts">1</property>
+    <property name="hibernate.c3p0.acquireRetryDelay">250</property>
+    <property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+    <property name="hibernate.current_session_context_class">thread</property>
+    <!-- Naveduvanje na klasite koi treba da se mapiraat preku HIBERNATE -->
+    <mapping resource="hibernate/configuration/kod.hbm.xml"/>
+    <mapping resource="hibernate/configuration/jazik.hbm.xml"/>
+    <mapping resource="hibernate/configuration/predmet.hbm.xml"/>
+    <mapping resource="hibernate/configuration/novost.hbm.xml"/>
+    <mapping resource="hibernate/configuration/User.hibernate.hbm.xml"/>
+    <!-- Kraj na konfiguracija za HIBERNATE -->
+
+  </session-factory>
+</hibernate-configuration>

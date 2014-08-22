@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- Mapiranje na Klasata Predmet vo DB upotrebuvajki go Hibernateg -->
+    <class name="classes.Predmet" table="COURSE">
+        <!-- Definiranje na primarniot kluc -->
+        <id column="course_id" name="idPredmet">
+            <generator class="increment"/>
+        </id>
+        <property column="name" name="imePredmet" type="string"/>
+        <property column="semester" name="semestadPredmet" type="integer"/>
+        <property  name="opisPredmet" type="string" >
+            <column name="description" length="9000" />
+        </property>
+        <!-- Definiranje na M:N Vrskata pomegju Predmet i Kod -->
+        <set cascade="all" name="hashsetPredmet" table="COURSE_CODE">
+            <key column="course_id" not-null="true"/>
+            <many-to-many class="classes.Kod">
+                <column name="code_id" not-null="true"/>
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

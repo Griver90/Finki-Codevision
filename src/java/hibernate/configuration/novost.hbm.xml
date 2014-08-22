@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- Mapiranje na Klasata Novost so soodvetnata tabela vo DB preku Hibernate -->
+    <class name="classes.Novost" table="ACTIVITY">
+        <!-- Definiranje na primarniot kluc -->
+        <id column="activity_id" name="idNovost">
+            <generator class="increment"/>
+        </id>
+        <property column="content" name="sodrzinaNovost" type="string"/>
+        <property column="date" name="datumNovost" type="string"/>
+        <property column="url" name="urlInfo" type="string"/>
+    </class>
+</hibernate-mapping>

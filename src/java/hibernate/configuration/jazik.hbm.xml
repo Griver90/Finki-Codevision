@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <!-- Mapiranje na Klasata Jazik vo Bazata na podatoci preku Hibernate -->
+    <class name="classes.Jazik" table="PROG_LANG">
+        <!-- Definiranje koj attribut i vo koja kolona ke e primarniot kluc -->
+        <id column="lang_id" name="idJazik">
+            <generator class="increment"/>
+        </id>
+        <property column="languageName" name="imeJazik" type="string"/>
+        <!-- Mapiranje na 1:M vrska so Kod -->
+        <set cascade="all" inverse="true" name="hashsetJazik">
+            <key column="lang_id"/>
+            <one-to-many class="classes.Kod"/>
+        </set>
+    </class>
+</hibernate-mapping>

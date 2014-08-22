@@ -1,0 +1,129 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package db.helpers;
+
+import classes.Kod;
+import classes.Predmet;
+import java.io.File;
+import java.util.List;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+
+/**
+ * Pomosna klasa za rabota so Predmet
+ * @author Aleksandar
+ */
+public class dbPredmet {
+
+    public static synchronized void vnesiPredmet(Predmet predmet, int i) {
+        Session session = null;
+        Transaction t = null;
+
+        try {
+            session = dbHelper.getSessionFact().openSession();
+            t = session.beginTransaction();
+
+            Kod kod = (Kod) session.load(Kod.class, i);
+            predmet.getHashsetPredmet().add(kod);
+           
+            session.save(predmet);
+            t.commit();
+            String imeDatoteka = dbPredmet.zemiImeNaDadoteka(predmet);
+            File[] file = FileHandler.kreirajFilePredmet(imeDatoteka, predmet);
+            FTP.addFile(file, "Predmet");
+            // URI vo format "predmetid-kodid"
+            String url = predmet.getIdPredmet() + "-0-0";
+            dbNovost.vnesiNovost("Нов предмет : " + predmet.getImePredmet(), url);
+            
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            if (t != null) {
+                t.rollback();
+            }
+        } finally {
+            if (session != null) {
+                session.flush();
+                session.close();
+            }
+
+        }
+
+    }
+
+    public static Predmet zemiPosledenPredmet() {
+        Predmet posledenPredmet;
+        List<Predmet> sitePredmeti = zemiSitePredmeti();
+        posledenPredmet = sitePredmeti.get(sitePredmeti.size() - 1);
+        return posledenPredmet;
+    }
+
+    public static List<Predmet> zemiSitePredmeti() {
+        Session session = null;
+        List<Predmet> p = null;
+        try {
+            session = dbHelper.getSessionFact().openSession();
+            Criteria findAll = session.createCriteria(Predmet.class);
+            p = findAll.list();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.flush();
+                session.close();
+            }
+        }
+        return p;
+    }
+
+    public static synchronized void promeniPredmet(Predmet p)
+    {
+        Session session = null;
+        Transaction tx = null;
+        try {
+            session = dbHelper.getSessionFact().openSession();
+            tx = session.beginTransaction();
+            Predmet tmpP = (Predmet) session.load(Predmet.class, p.getIdPredmet());
+            tmpP.setSemestadPredmet(p.getSemestadPredmet());
+            tmpP.setOpisPredmet(p.getOpisPredmet());
+            tx.commit();
+        } catch (Exception ex) {
+            ex.getMessage();
+        } finally {
+            if (session != null) {
+                session.flush();
+                session.close();
+            }
+
+        }
+    }
+    
+    public static synchronized void brisiPredmet(String id){
+        Session session = null;
+        
+        try{
+            session = dbHelper.getSessionFact().openSession();
+            Predmet p = (Predmet) session.load(Predmet.class, Integer.parseInt(id));
+            if(p!=null){
+                session.delete(p);
+                dbNovost.brisiNovostZaPredmet(p.getIdPredmet());
+            }
+        }
+        catch (Exception ex){
+            System.out.println("error..."+ex.getMessage());
+        }
+        finally{
+            if(session!=null){
+                session.flush();
+                session.close();
+            }
+        }
+    }
+    
+    public static String zemiImeNaDadoteka(Predmet p) {
+        return p.getImePredmet() + ".txt";
+    }
+}

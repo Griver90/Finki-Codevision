@@ -1,0 +1,118 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package db.helpers;
+
+import classes.Jazik;
+import classes.Kod;
+import com.mchange.v1.util.ArrayUtils;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Expression;
+
+/**
+ * Pomosna klasa za rabota so Tabelata Jazik vo hibernate
+ * @author Aleksandar
+ */
+public class dbJazik {
+
+    /**
+     * Funkcijata prima objekt od vid Jazik koj sodrizi  
+     * informaciite za jazikot koj ke bide vnesen vo bazata
+     * 
+     * @param Jazik, Objekt od vid Jazik 
+     */
+    public static void vnesiJazik(Jazik jazik) {
+        Session session = null;
+        Transaction trans = null;
+        
+        try {
+            //dobivanje sesija od Sessionfactory
+            session = dbHelper.getSessionFact().openSession();
+            //otvaranje na buffer za tranzakcijata
+            trans = session.beginTransaction();
+            //vnesuvanje vo bufferot na zapisi
+            session.save(jazik);
+            //zapisuvanje vo bazata
+            trans.commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            if (trans != null) {
+                //vrakjanje na predhodniot status pred greskata
+                trans.rollback();
+            }
+        } finally {
+            if (session != null) {
+                //praznenje i zatvaranje na sesijata
+                session.flush();
+                session.close();
+            }
+        }
+    }
+
+    /**
+     * Funkcijata prima parametar od vid Integer koj oznacuva
+     * primarniot kluc na Jazikot zapisan vo bazata a istata 
+     * vrakja Objekt od vid Jazik koj se odnesuva na toa ID
+     * 
+     * @param idJazik
+     * @return Jazik, Jazikot so ID @param idJazik
+     */
+    public static Jazik zemiJazik(int idJazik) {
+        Session session = null;
+        Jazik rezult = null;
+        List<Jazik> siteRezultati;
+        try {
+            session = dbHelper.getSessionFact().openSession();
+            //Declaracija i inicjalizacija na promenliva od vid Criteria 
+            //koja ovozmozuva lesen pristap do informaziite od bazata
+            //bez potreba od poznavanje na SQL
+            Criteria criteria = session.createCriteria(Jazik.class);
+            //Dodavame kriterium spored koj ke se filtriraat podatocite
+            criteria.add(Expression.eq("idJazik", idJazik));
+            siteRezultati = criteria.list();
+            if (siteRezultati != null && siteRezultati.size() > 0) {
+                rezult = siteRezultati.get(0);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.flush();
+                session.close();
+            }
+        }
+        return rezult;
+    }
+    /**
+     * Funkcijata vrakja Lista od Objekti od vid Jazik
+     * t.e. gi vrakja site jazici vo bazata
+     * 
+     * @return List<Jazik>, Site jazici vo Bazata
+     */
+    public static List<Jazik> zemiSiteJazici() {
+        Session session = null;
+        List<Jazik> jaz = null;
+
+        try {
+            session = dbHelper.getSessionFact().openSession();
+            Criteria findAll = session.createCriteria(Jazik.class);
+            jaz = findAll.list();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        } finally {
+            if (session != null) {
+                session.flush();
+                session.close();
+            }
+        }
+        return jaz;
+    }
+    
+    
+}

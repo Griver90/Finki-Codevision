@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class  name="classes.User"  table="User">
+        <id column="UserId" name="Id">
+            <generator class="increment"/>
+        </id>
+        <property column="UserName" name="UserName"></property>
+        <property column="Password" name="Password"></property>
+        <property column="Role" name="Role"></property>
+
+    </class>
+</hibernate-mapping>

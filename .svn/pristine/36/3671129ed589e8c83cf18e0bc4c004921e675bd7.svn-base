@@ -1,0 +1,368 @@
+/* clearfix za float */
+.clearfix:before,
+.clearfix:after {
+    display: table;
+    line-height: 0;
+    content: "";
+}
+.clearfix:after {
+    clear: both;
+}
+.clearfix {
+    *zoom: 1;
+}
+/* clearfix za float kraj*/
+
+/* css reset */     
+body,html,div{
+    margin:0px;
+    padding: 0px;
+}
+
+/* css reset*/
+
+#body{
+    font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-image: url('../img/pozadina/shattered.png');
+    background-repeat: repeat;
+
+}
+
+#wrapper{
+    width:100%;
+    max-width: 990px;
+    margin: auto;
+}
+
+
+.loading{
+  	position:absolute;
+	left:50%;
+	top:50%;
+        margin-top: -40px;
+}
+
+.hidden{
+    display: none;
+    visibility: hidden;
+}
+/* Header pocetok */
+header bannerSlika{
+    width: 100%;
+
+}
+.navbar{
+    margin-top:20px;
+}
+
+.aktivna-strana{
+    display: none;
+}
+/*Header kraj */
+
+/*Sodrzina centar pocetok*/
+
+#content{
+    width: 100%;
+    height: 100%;
+    background-color: #ededed;
+}
+#glavnaSodrzina{
+    width:73.7%;
+    background-color: #ededed;
+    float:left;
+}
+
+.pocetnaTekst{
+    padding:20px;
+    font-family:'Arial';
+    font-size:17px;
+    margin: 10px;
+}
+/* Sodrzina centar kraj*/
+
+/*css za predmeti pocetok*/
+
+.opisnapredmet {
+  background-color:#dbdcdd; 
+
+}
+
+#imepredmet{
+    margin:10px; 
+    padding-left:10px;
+    padding-bottom:5px;
+}
+
+.predmetList{
+    background-color:#ededed;
+}
+
+/*css za predmeti kraj*/
+
+
+/* css za tabot kod start */
+
+
+.searchBar{
+    background-color: #ededed;
+    padding: 10px;
+    margin: 10px;
+    border-bottom:3px solid #747474;
+}
+.kodList{
+    background-color: #ebebeb;
+}
+.kodDivLeft{
+    width: 65%;
+}
+
+
+#listaKod li a{
+    -webkit-transition: all .25s ease-in;
+    -moz-transition: all .25s  ease-in;
+    -o-transition: all .25s  ease-in;
+    transition: all .25s  ease-in;
+}
+
+#listaKod  li a:hover { 
+    background-color:#8CC8FA;
+}
+
+.editCode{
+    margin:10px 5px 10px 10px;
+}
+
+/* css za tabot kod kraj */
+
+/*Info Bar desno start */
+
+#infoBar{
+    width:25%;
+    min-width: 25%;
+    float:right;
+    background-color: #e9e9e9;
+    background-repeat: repeat;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+#prikazi{
+    
+    display: none;
+    color:rgb(200,200,200);
+    transition: all 0.2s ease-in;
+    -moz-transition: all 0.2s ease-in;
+    -webkit-transition: all 0.2s ease-in;
+    cursor: pointer;
+}
+
+#prikazi:hover{
+    color: white;
+}
+
+#infoBarContent{
+    width: 100%;
+    height: 500px; 
+    background-image: url('../img/novosti/pozadina.png');
+    overflow-y:auto;
+    background-color: #e9e9e9;
+    background-repeat: repeat;
+
+}
+
+#infoBarContent a{
+    color: white;
+    text-decoration: none;
+}
+
+#infoBarContent a:hover{
+    color:white;
+    text-decoration: none;
+}
+#infoBarContent ul li {
+    -webkit-transition:background .3s ease-in-out;  
+   -moz-transition:background .3s ease-in-out;  
+   -o-transition:background .3s ease-in-out;  
+   transition:background .3s ease-in-out;
+}
+
+#infoBarContent ul li:hover{
+    background:#50727D;
+}
+
+
+.sina{
+    background-color: rgba(0,133,199, 0.2);
+    color:white; 
+}
+
+.crvena{
+    background-color: rgba(240,48,48, 0.2);
+    color:white;
+}
+.novost{
+    list-style-type:none;
+    display:block;
+    padding:6.2px;
+    margin:3px 3px 0 3px;
+}
+
+.novost img{
+    float:left;
+    margin-right:5px; 
+
+}
+
+
+#infoBarContent ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* Info bar desno kraj */
+
+/*Admin panel kod pocetok */
+#adminPanel{
+    width: 100%;
+    height: 500px;
+    background: white;
+
+}
+#loginPanel {
+    display: table;
+    margin: auto;
+    margin-top: 15%;
+}
+#save label{
+    display: inline-block;
+}
+#submitLine .btn{
+    float:left;
+}
+#submitLine #save{
+    float:left;
+    margin:0 0 0 10px;
+    padding: 0px;
+}
+#submitLine #save label, #submitLine #save input{
+    margin:5px 2px 5px 2px;
+    padding: 0px;
+}
+#adminPanel form{
+    display:inline-block;
+    width: 250px;
+
+}
+
+.kopceZaAdmin{
+    display: table;
+    margin: 0 auto;
+}
+
+/* Admin panel kraj*/
+
+/*Css za formi start */
+.forma {
+    width: 100%;
+    display: table;
+    margin: 0 auto;
+}
+
+.forma .code{
+    width: 95%;
+    height: 100%;
+}
+
+
+.forma .opis{
+    width: 350px;
+    height: 150px;
+}
+
+.tab-height .code{
+    height:350px;
+}
+/*Css za formi kraj */
+
+/*fb like*/
+.fb-like{
+    float:right;
+    padding: 10px 0px 6px 0px;
+    margin-right: 50px;
+}
+
+
+/* fooooter */
+footer {
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
+    background-image: -webkit-linear-gradient(#222222, #111111);
+    background-image: -moz-linear-gradient(#222222, #111111);
+    background-image: -o-linear-gradient(#222222, #111111);
+    background-image: linear-gradient(#222222, #111111);
+    color:white;
+    
+    text-align: center;
+    line-height: 3.4em;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+/*foooter*/
+
+/* still za pod 760px */
+@media screen and (max-width: 770px) {
+    #bannerSlika{
+        display: none;
+    }
+    .navbar{
+        margin-top:0px;
+    }
+    .aktivna-strana{
+        color:white;
+        display:inline-block;
+        font-size: 2em;
+        line-height: 1.4em;
+        cursor:pointer;
+    }
+    #glavnaSodrzina{
+        width: 100%;
+
+    }
+    #prikazi{
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        display: inline-block;
+        height: 30px;
+        width: 100%;
+        background-color: black;
+        text-align: center;
+        line-height: 2em;
+        font-size: 15px;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
+        background-image: -webkit-linear-gradient(#222222, #111111);
+        background-image: -moz-linear-gradient(#222222, #111111);
+        background-image: -o-linear-gradient(#222222, #111111);
+        background-image: linear-gradient(#222222, #111111);
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 2px;
+
+    }
+    
+    #infoBar{
+        width: 100%;
+        float:left;
+    }
+    #infoBarContent{
+        height: 200px;
+        display: none;
+        overflow-y:scroll;
+    }
+    #kopcinjaStranaKod li > a {
+        float:left;
+    }
+
+}
+
+/* still za pod 760px */

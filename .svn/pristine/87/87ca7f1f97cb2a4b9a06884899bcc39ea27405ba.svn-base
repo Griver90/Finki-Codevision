@@ -1,0 +1,71 @@
+<%-- 
+    Document   : navKopcinja
+    Created on : Mar 5, 2013, 10:34:03 AM
+    Author     : Muhamed
+--%>
+
+<%@page import="classes.User"%>
+<%@page import="org.apache.tomcat.util.http.Cookies"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<%
+    String aktivnaStrana = request.getServletPath();
+    aktivnaStrana = aktivnaStrana.substring(1);
+    User u = (User) session.getAttribute("User");
+
+%> 
+<div class="container">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+    </a>
+    <div class="aktivna-strana" data-toggle="collapse" data-target=".nav-collapse">
+        Најавување за Админ
+    </div>
+    <div class="nav-collapse">
+        <ul class="nav">
+            <li <% if (aktivnaStrana.equals("Pocetna.jsp")) {%> class="active" <%}%>>
+                <a href="Pocetna.jsp">Почетна</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li <% if (aktivnaStrana.equals("Predmeti.jsp")) {%> class="active" <%}%>>
+                <a href="Predmeti.jsp">Предмети</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li  <% if (aktivnaStrana.equals("Kod.jsp")) {%> class="active" <%}%>>
+                <a href="Kod.jsp">Код</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li  <% if (aktivnaStrana.equals("Kontakt.jsp")) {%> class="active" <%}%>>
+                <a href="Kontakt.jsp">Контакт</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li  <% if (aktivnaStrana.equals("Forum.jsp")) {%> class="active" <%}%>>
+                <a href="Forum.jsp">Форум</a>
+            </li>
+
+        </ul>
+        <ul class="nav pull-right">
+            <%
+                if (u != null) {
+            %>
+            <li  <% if (aktivnaStrana.equals("AdminPanel.jsp")) {%> class="active" <%}%>>
+                <a href="AdminPanel.jsp">Админ Панел</a>
+            </li>
+            <% if ("Administrator".equals(u.getRole())) {%>
+            <li>
+
+                <a href="Logout" >Одјави Се</a>
+
+                <%       }%>
+            </li>
+            <% } else {%>
+            <li>
+                <a href="AdminLogin.jsp">Најави се</a>
+            </li>
+            <%}%>
+        </ul>
+    </div>
+</div>
+

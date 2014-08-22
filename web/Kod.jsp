@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<html>   
+    <head>  
+        <meta charset="utf-8"> 
+        <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+        <link rel="stylesheet" href="css/siteStyle.css">
+        <link rel="stylesheet" href="js/bootstrap/css/bootstrap.css"/>
+        <link rel="stylesheet" href="js/bootstrap/css/bootstrap-responsive.css">
+        <link rel="stylesheet" href="js/Codemirror/codemirror.css">
+        <link rel="stylesheet" href="js/Codemirror/theme/lesser-dark.css">
+        <link rel="stylesheet" href="js/Codemirror/theme/monokai.css">
+        <link rel="stylesheet" href="js/jquery/smoothness/jquery-ui-1.10.1.custom.css">
+
+        <title> Код </title>
+    </head>
+    <body id="body">
+        <div id="fb-root"></div>
+        <script>(function(d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id))
+                    return;
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=201944636649460";
+                fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));</script>
+        <div class="clearfix" id="wrapper">
+            <!--Header Pocetok-->
+            <header>
+                <!--Slika Pocetok-->
+                <div id="bannerSlika">
+                    <img src ="img/banner/banner2.jpg" />
+                </div>
+                <!--Slika Kraj-->
+                <!-- Navigacija Pocetok-->
+                <div class="navbar navbar-inverse">
+                    <div class="navbar-inner">
+                        <jsp:include page="webParts/navKopcinja.jsp"/>  
+                    </div>
+                </div>
+                <!-- Navigacija Kraj-->	
+            </header>
+            <!-- Header Kraj -->
+            <!---Glavna Sodrzin- Pocetok-->
+
+
+            <div class ="clearfix content"  id="content">
+                <div class='loading' style="display: none" >
+                    <img src='img/loading/loading.gif'/>
+                </div> 
+                <div class ="row searchBar">
+                    <jsp:include page="webParts/kodSearch.jsp"/>
+                </div>
+                <div class="row-fluid" >
+                    <div class=" span3" >
+                        <ul class="nav nav-pills nav-stacked" id="listaKod" >
+                        </ul>
+
+                    </div>
+                    <div class="span9" id="sodrzinaKod">
+                        <jsp:include page="webParts/pregledKod.jsp"/>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            <!---Glavna Sodrzina Kraj-->
+            <!---Footer Sodrzia Pocetok-->
+            <footer class="clearfix">
+                Finki-CodeVision all rights reserved.
+            </footer>
+            <!---Footer Sodrzia Kraj-->
+        </div>
+        <script src="js/jquery/jquery.js"></script>
+        <script src="js/jquery/jquery-ui-1.10.1.custom.js"></script>
+        <script src="js/bootstrap/js/bootstrap.js"></script>
+        <script src="js/Codemirror/codemirror.js"></script>
+        <script src="js/knockout-2.3.0.js"></script>
+        <script src="js/Codemirror/mode/clike/clike.js"></script>
+        <script src="js/CodeView.js"></script>
+
+        <script src="js/Scripti.js"></script>
+
+        <script>
+    CodeView.Editor.init(document.getElementById("codeSrc1"), "text/x-csrc", false);
+
+    $("[rel='tooltip']").tooltip({
+        html: true
+    });
+        </script>
+
+
+    </body>
+</html>  
